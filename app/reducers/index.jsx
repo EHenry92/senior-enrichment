@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux'
 
-const initialState = {}
+const initialState = {
+  students: [],
+  campuses: [],
+  selectedCampus: {}
+}
 
 const rootReducer = function(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     default: return state
   }
 };

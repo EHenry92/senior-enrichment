@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import NavBar from './Navbar'
+import Student from './Students'
+import Campuses from './Campuses'
 
 export default class WinterJokes extends Component {
   constructor() {
@@ -30,6 +33,9 @@ export default class WinterJokes extends Component {
       <div>
         <h1 onClick={answered ? this.nextJoke : this.answer}>{joke.q}</h1>
         {answered && <h2>{joke.a}</h2>}
+        <NavBar />
+        <Student />
+        <Campuses />
       </div>
     )
   }
