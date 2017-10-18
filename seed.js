@@ -7,7 +7,7 @@ var Promise = require('bluebird');
 
 var Chance = require('chance');
 var chance = new Chance();
-const numStudents = 100;
+const numStudents = 50;
 const numCampuses = 5;
 
 

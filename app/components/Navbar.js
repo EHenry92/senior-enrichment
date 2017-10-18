@@ -1,13 +1,27 @@
 import React, {Component} from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default class NavBar extends Component {
-
     render ()   {
         return (
-            <div>
-            <button>Home</button>
-            <button>Students</button>
+            <div id="nav">
+                 <section className='nav-button'>
+                <h4>
+                <NavLink to="/">Homes</NavLink>
+                </h4>
+            </section>
+                <section className='nav-button'>
+                <h4>
+                <NavLink to="/campuses">Campuses</NavLink>
+                </h4>
+            </section>
+            <section className='nav-button'>
+                <h4>
+                <NavLink to="/students">Students</NavLink>
+                </h4>
+            </section>
              </div>
         )
     }
 }
+

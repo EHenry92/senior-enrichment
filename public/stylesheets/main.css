@@ -1,0 +1,103 @@
+
+html {
+    background-color: #f8f8f8; }
+  
+body {
+    background: repeating-linear-gradient(45deg, #6193d4 0px, #6193d4 10px, #ccc 1px, #ccc 11px);
+    height: 100vw;
+    box-sizing: border-box;
+}
+ 
+
+/* NavBar */
+    #nav{
+        background-color: black;
+        display:flex;
+        justify-content: flex-end;
+        width: 95vw;
+        height:100px;
+        border-radius: 15px 50px;
+        padding:10px;
+        margin-bottom: 30px;
+        margin-left: 1.5vw;
+        
+        
+    }
+    .nav-button {
+        background-color: orange;
+        border-radius: 15px 50px;
+        height:70%;
+        width: 100px;
+        align-self: flex-end;
+    }
+
+/* Campus */
+    #campuses   {
+        display: flex;
+        background-color: rgb(235, 204, 162);
+        flex-wrap: wrap;
+        width: 70vw;
+        
+    }
+    .singleCampus{
+        margin: 10px;
+        image-rendering: auto;
+        width: 21vw;
+        height: 21vw;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-size: 40px;
+        font-weight: bold;
+        font-style: italic;
+        
+    }
+    #list{
+        background-color: #6193d4;
+        float: right;
+        width: 25vw;
+        display:flex;
+        flex-flow:column;
+    }
+
+    /* Students */
+    .table  {
+        width:70vw;
+        background-color: #6193d4;
+        display:flex;
+        flex-flow: column;
+        margin-left: 1.5vw;
+        
+        
+    }
+    .idField{
+        width:8vw;
+        background-color: #ccc;
+    }
+
+    .nameField{
+        width: 27vw;
+    }
+    .campusField{
+        width: 23vw;
+        background-color: #ccc;
+
+    }
+    .deleteField{
+        width:5vw;
+    }
+
+
+    /* AddStudent */
+        #add{
+            float: right;
+            background-color: #6193d4;
+            width: 25vw;
+            display:flex;
+            flex-flow: column;
+        }
+        .nameRow{
+            position:fixed;
+            width: 24vw;
+            
+        }
+        

@@ -3,7 +3,6 @@ import axios from 'axios';
 //Action Types
 const ADD_STUDENT = 'ADD_STUDENT ';
 const DELETE_STUDENT = 'DELETE_STUDENT';
-const GET_STUDENT = 'GET_STUDENTS';
 const GET_STUDENTS = 'GET_STUDENTS';
 const EDIT_STUDENT = 'EDIT_STUDENT';
 
@@ -12,14 +11,11 @@ const EDIT_STUDENT = 'EDIT_STUDENT';
         const action = { type: ADD_STUDENT, student };
         return action;
     }
-    export function deleteStudent (student) {
-        const action = { type: DELETE_STUDENT, student };
+    export function deleteStudent (id) {
+        const action = { type: DELETE_STUDENT, id };
         return action;
     }
-    export function getStudent (student) {
-        const action = { type: GET_STUDENT, student };
-        return action;
-    }
+    
     export function getStudents (students) {
         const action = { type: GET_STUDENTS, students };
         return action;
@@ -40,6 +36,7 @@ const EDIT_STUDENT = 'EDIT_STUDENT';
             });
         }
     }
+
     export function postStudent (studentData) {
         return function thunk (dispatch) {
             return axios.post('/api/students', studentData)
@@ -50,29 +47,21 @@ const EDIT_STUDENT = 'EDIT_STUDENT';
             });
         }
     }
-    export function destroyStudent (studentData) {
+    export function destroyStudent (studentId) {        
         return function thunk (dispatch) {
-            return axios.delete(`/api/students/${studentData.id}`)
+            dispatch(deleteStudent(studentId));            
+            return axios.delete(`/api/students/${studentId}`)
             .then(res => res.data)
-            .then(oldStudent => {
-                const action = deleteStudent(oldStudent);
-                dispatch(action);
-            });
+            .then(trash => {
+                dispatch(deleteStudent(trash.id));
+            })
+            .catch((err) => console.log(err));
         }
     }
-    export function fetchStudent (studentId) {
-        return function thunk (dispatch) {
-            return axios.get(`/api/students/${studentId}`)
-            .then(res => res.data)
-            .then(student => {
-                const action = addStudent(student);
-                dispatch(action);
-            });
-        }
-    }
+
     export function putStudent (studentData) {
         return function thunk (dispatch) {
-            return axios.put('/api/students')
+            return axios.put(`/api/students/${studentData.id}`,studentData)
             .then(res => res.data)
             .then(student => {
                 const action = addStudent(student);
@@ -80,3 +69,26 @@ const EDIT_STUDENT = 'EDIT_STUDENT';
             });
         }
     }
+
+    //Reducers
+    export default function reducer (students = [], action) {
+  switch (action.type) {
+    case ADD_STUDENT:
+      return [action.student, ...students];
+    
+    case GET_STUDENTS:
+        return action.students;
+
+    case  DELETE_STUDENT:
+      return students.filter(student => action.id !== student.id);
+
+    case EDIT_STUDENT:
+      return students.map(student => (
+        action.student.id === student.id ? action.student : student
+      ));
+
+    default:
+      return students;
+  }
+}
+
