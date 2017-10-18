@@ -22,28 +22,22 @@ export default class Students extends Component {
         store.dispatch(fetchCampuses());
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
     }
-    clickHandler()   {
+    clickHandler(event)   {
+        event.preventDefault();
         this.click = !this.click;
         this.setState({});
     }
     deleteHandler(evt)   {
         evt.preventDefault();
         store.dispatch(destroyStudent(evt.target.value));
-        this.setState(store.getState());
     }
     componentWillUnmount () {
         this.unsubscribe();
       }
-    componentWillUpdate(nextProps, nextState)   {
-        if (nextState.open == true && this.state.open == false){
-            this.props.onWillOpen();
-        }
-    }
 
     render ()   {
         let form;
         if (this.click)
-        // {form = this.renderAddStudent()}
         {form = <AddStudent campuses={this.state.campuses} />}
         return (
             <div>
@@ -64,7 +58,7 @@ export default class Students extends Component {
                         </thead>
                             <tbody>
                             {
-                                this.state.students.map(student => (
+                                this.state.students.list.map(student => (
                                 <tr key={'student' + student.id}>
                                     <td key="id" className="idField">{student.id}</td>
                                     <td key="name" className="nameField">{student.name}</td>
@@ -85,5 +79,3 @@ export default class Students extends Component {
         )
     }
 }
-
-    

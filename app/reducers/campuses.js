@@ -78,7 +78,6 @@ export default function reducer (campuses = [], action) {
   switch (action.type) {
     case ADD_CAMPUS:
       return [action.campus, ...campuses];
-    
     case GET_CAMPUSES:
         return action.campuses;
 

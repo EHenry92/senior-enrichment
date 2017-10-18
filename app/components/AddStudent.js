@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {addStudent} from '../reducers/aStudentEntry'
 import store from '../store';
-import {fetchStudents, destroyStudent} from '../reducers/students'
+import {postStudent, fetchStudents} from '../reducers/students';
 
 
 export default class AddStudent extends Component {
@@ -20,10 +19,10 @@ export default class AddStudent extends Component {
             email: state.fName + state.lName + '@GrandCampusSchools.edu',
             campusId: state.campusId
             }
-            store.dispatch(addStudent(student))
-            .then(() => this.setState(store.getState()))
-            .then(() => store.dispatch(postStudent(this.state.aStudent)))
-            .catch(err => console.log(err))
+            store.dispatch(postStudent(student))
+            store.dispatch(fetchStudents());
+            // .then(() => this.setState(store.getState()))
+            // .catch(err => console.log(err))
         }
     }
 

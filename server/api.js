@@ -16,6 +16,7 @@ api.get('/campuses', (req, res, next) => {
 	.then(info => {
 		res.json(info);
 	})
+	.catch(next);
 })
 .get('/campuses/:campusId', (req, res, next) => {
 	Campus.findById(req.params.campusId)
@@ -77,10 +78,10 @@ api.get('/students', (req, res, next) => {
 		if (!info)	{
 			res.status(404).end('That is not a valid student id');
 		}
-		else {		res.json(info);
+		else {res.json(info);
 		}
 	})
-	.catch(err => res.send('Invalid Student',err))
+	.catch(err => res.send('Invalid Student', err))
 })
 .post('/students', (req, res, next) => {
 	const aName = req.body.name;
@@ -96,7 +97,6 @@ api.get('/students', (req, res, next) => {
 	})
 })
 .put('/students/:studentId', (req, res, next) =>	{
-	if (req.body.email) {
 		const aEmail = req.body.email;
 		Student.update(
 			{
@@ -108,8 +108,7 @@ api.get('/students', (req, res, next) => {
 			}
 		)
 		.then(results => res.json(results))
-		.catch(err => next(err))
-	}
+		.catch(next)
 })
 .delete('/students/:studentId', (req, res, next) => {
 	Student.destroy({
