@@ -49,7 +49,7 @@ body {
         font-size: 40px;
         font-weight: bold;
         font-style: italic;
-        
+        text-align: center;
     }
     #list{
         background-color: #6193d4;

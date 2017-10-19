@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
 import students from './students';
 import campuses from './campuses';
-// import aStudent from './aStudentEntry';
-import aCampus from './aCampus'
 
 // const initialState = {
 //   students: [],
@@ -16,4 +14,4 @@ const rootReducer = function(state = {}, action) {
   }
 };
 
-export default combineReducers({ rootReducer, students, campuses, aCampus});
+export default combineReducers({ rootReducer, students, campuses});

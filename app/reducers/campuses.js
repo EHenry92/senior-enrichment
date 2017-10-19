@@ -1,11 +1,17 @@
 import axios from 'axios';
 import store from '../store';
+let initialState = {
+    list: [],
+    campus: {}
+}
 
 //Action Types
 const ADD_CAMPUS = 'ADD_CAMPUS';
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const DELETE_CAMPUS = 'DELETE_CAMPUS';
 const EDIT_CAMPUS = 'EDIT_CAMPUS';
+const SET_CAMPUS = 'SET_CAMPUS';
+const GET_CAMPUS = 'GET_CAMPUS';
 
 //ACTION CREATORS
     export function addCampus (campus) {
@@ -18,13 +24,22 @@ const EDIT_CAMPUS = 'EDIT_CAMPUS';
         return action;
     }
 
-    export function deleteCampus (id) {
-        const action = { type: DELETE_CAMPUS, id };
+    export function deleteCampus (campusId) {
+        const action = { type: DELETE_CAMPUS, campusId };
         return action;
     }
 
     export function editCampus (campus) {
         const action = { type: EDIT_CAMPUS, campus };
+        return action;
+    }
+
+    export function getCampus (campus) {
+        const action = { type: GET_CAMPUS, campus };
+        return action;
+    }
+    export function setCampus (campus)    {
+        const action = {type: SET_CAMPUS, campus};
         return action;
     }
 
@@ -41,9 +56,9 @@ const EDIT_CAMPUS = 'EDIT_CAMPUS';
         }
     }
 
-    export function postCampus () {
+    export function postCampus (campus) {
         return function thunk (dispatch) {
-            return axios.post('/api/campuses', store.state.campus)
+            return axios.post('/api/campuses', campus)
             .then(res => res.data)
             .then(newCampus => {
                 const action = addCampus(newCampus);
@@ -51,12 +66,12 @@ const EDIT_CAMPUS = 'EDIT_CAMPUS';
             });
         }
     }
-    export function destroyCampus (campus) {
+    export function destroyCampus (campusId) {
         return function thunk (dispatch) {
-            return axios.delete(`/api/campuses/${campus.id}`)
+            return axios.delete(`/api/campuses/${campusId}`)
             .then(res => res.data)
-            .then(closedCampus => {
-                const action = deleteCampus(closedCampus.id);
+            .then(() => {
+                const action = deleteCampus(campusId);
                 dispatch(action);
             });
         }
@@ -68,29 +83,55 @@ const EDIT_CAMPUS = 'EDIT_CAMPUS';
             .then(changedCampus => {
             const action = editCampus(changedCampus);
             dispatch(action);
-            // socket.emit('close-campus', closedCampus);
+            // socket.emit('close-campus', closdCampus);
+            });
+        }
+    }
+
+    export function fetchCampus (campusId) {
+        return function thunk (dispatch) {
+        return axios.get(`/api/campuses/${campusId}`)
+            .then(res => res.data)
+            .then(campus => {
+            const action = getCampus(campus);
+            dispatch(action);
             });
         }
     }
 //REDUCERS
 
-export default function reducer (campuses = [], action) {
+export default function reducer (state = initialState, action) {
   switch (action.type) {
     case ADD_CAMPUS:
-      return [action.campus, ...campuses];
+      return Object.assign({}, state, {
+        list: [...state.list, action.campus],
+        campus: action.campus
+      });
     case GET_CAMPUSES:
-        return action.campuses;
+        return Object.assign({}, state, {
+            list: action.campuses
+          });
 
     case  DELETE_CAMPUS :
-      return campuses.filter(campus => campus.id !== action.id);
-
+      return Object.assign({}, state, {
+        list: state.list.filter(campus => campus.id != action.campusId),
+        campus: {}
+        });
+    case SET_CAMPUS:
+      return Object.assign({}, state, {
+        campus: action.campus
+      });
+    case GET_CAMPUS:
+      return Object.assign({}, state, {
+        campus: action.campus
+      });
     case EDIT_CAMPUS:
-      return campuses.map(campus => (
-        action.campus.id === campus.id ? action.campus : campus
-      ));
+      return Object.assign({}, state, {
+        list: state.list.filter(campus => campus.id != action.campus.id),
+        campus: action.campus
+    });
 
     default:
-      return campuses;
+      return state;
   }
 }
-

@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import {fetchStudents, destroyStudent} from '../reducers/students'
+import {fetchStudents, destroyStudent, fetchStudent} from '../reducers/students'
 import store from '../store';
 import {fetchCampuses} from '../reducers/campuses'
 import AddStudent from './AddStudent';
+import OneStudent from './SingleStudent';
+import { NavLink } from 'react-router-dom';
+
 
 
 export default class Students extends Component {
@@ -12,6 +15,7 @@ export default class Students extends Component {
         this.click = false;
         this.clickHandler = this.clickHandler.bind(this);
         this.deleteHandler = this.deleteHandler.bind(this);
+        this.studentClickHandler = this.studentClickHandler.bind(this);
 
     }
      componentWillMount ()   {
@@ -26,6 +30,11 @@ export default class Students extends Component {
         event.preventDefault();
         this.click = !this.click;
         this.setState({});
+    }
+    studentClickHandler(event)  {
+        event.preventDefault();
+        this.studentClick = !this.studentClick;
+        store.dispatch(fetchStudent(event.target.value));
     }
     deleteHandler(evt)   {
         evt.preventDefault();
@@ -45,6 +54,7 @@ export default class Students extends Component {
                     <button onClick={this.clickHandler}>Add Student</button>
                     {form}
                 </div>
+               
                     <div>
                         <table className="table">
                         <thead>
@@ -61,7 +71,10 @@ export default class Students extends Component {
                                 this.state.students.list.map(student => (
                                 <tr key={'student' + student.id}>
                                     <td key="id" className="idField">{student.id}</td>
-                                    <td key="name" className="nameField">{student.name}</td>
+                                    <td key="name">
+                                        <NavLink to={`/student/${student.id}`}>{student.name}</NavLink>
+
+                                    </td>
                                     <td key="campus" className="campusField">{student.campus.name}</td>
                                     <td key="delete" className="deleteField">
                                         <button

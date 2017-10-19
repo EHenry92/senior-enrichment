@@ -4,11 +4,12 @@ import {render} from 'react-dom'
 import { Provider } from 'react-redux'
 
 import store from './store'
-import Root from './components/Root'
 
 import NavBar from './components/Navbar';
 import Student from './components/Students';
 import Campuses from './components/Campuses';
+import SingleCampus from './components/SingleCampus';
+import SingleStudent from './components/SingleStudent';
 import Home from './components/Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -24,7 +25,9 @@ render(
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/students" component={Student} />
-              <Route path="/campuses" component={Campuses} />
+              <Route exact path="/campuses" component={Campuses} />
+              <Route path="/campus/:id" component={SingleCampus} />
+              <Route path="/student/:id" component={SingleStudent} />
               <Route component={Home} />
             </Switch>
             </div>

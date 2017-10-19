@@ -35,7 +35,7 @@ export function getStudent (student)   {
     const action = {type: GET_STUDENT, student};
     return action;
 }
-export function settudent (student)   {
+export function setStudent (student)   {
     const action = {type: SET_STUDENT, student};
     return action;
 }
@@ -50,7 +50,6 @@ export default function reducer (state = initialState, action)   {
             list: action.students
           });
         case ADD_STUDENT:
-          console.log("the state",state)
             return Object.assign({}, state, {
                 list: [...state.list, action.student],
                 student: action.student
@@ -58,7 +57,7 @@ export default function reducer (state = initialState, action)   {
         case DELETE_STUDENT:
               return Object.assign({}, state, {
                     list: state.list.filter(person => person.id != action.studentId),
-                  student: ''
+                  student: {}
               });
         case EDIT_STUDENT:
               return Object.assign({}, state, {
