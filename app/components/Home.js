@@ -1,12 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-
-export default class Home extends Component {
-    render ()   {
+export default function Home(props) {
         return (
-            <div> THIS HERE IS THE HOME PAGE
+            <div> Welcome!
+                <img id='mainImage' src= {'./graduation.jpg'}/>
                 </div>
-    
         )
-    }
 }

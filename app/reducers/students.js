@@ -28,7 +28,6 @@ export function addStudent (student)   {
     return action;
 }
 export function editStudent (student)   {
-    console.log("the student ifno", student)
     const action = {type: EDIT_STUDENT, student};
     return action;
 }

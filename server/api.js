@@ -41,12 +41,9 @@ api.get('/campuses', (req, res, next) => {
 	})
 })
 .put('/campuses/:campusId', (req, res, next) =>	{
-	if (req.body.image) {
-		const aImage = req.body.image;
 		Campus.update(
-			{
-				image: aImage
-			}, {
+			req.body
+			, {
 				 where: { id: req.params.campusId },
 				 returning: true,
 				 plain: true
@@ -55,7 +52,7 @@ api.get('/campuses', (req, res, next) => {
 		.then(results => res.json(results))
 		.catch(err => next(err))
 	}
-})
+)
 .delete('/campuses/:campusId', (req, res, next) => {
 	Campus.destroy({
 		where: {id: req.params.campusId}
@@ -97,7 +94,6 @@ api.get('/students', (req, res, next) => {
 	})
 })
 .put('/students/:studentId', (req, res, next) =>	{
-		console.log(req.body.student)
 		Student.update(
 			req.body, {
 				 where: { id: req.params.studentId },

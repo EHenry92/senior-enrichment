@@ -24,7 +24,9 @@ export default class Students extends Component {
         store.dispatch(fetchCampuses());
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
     }
-    
+    componentWillUnmount()  {
+        this.unsubscribe();
+    }
     clickHandler(event)   {
         event.preventDefault();
         this.click = !this.click;
@@ -66,7 +68,7 @@ export default class Students extends Component {
                         <tr className="profile-row">
                             <td> Campus: </td>
                             <td>
-                                <NavLink to={`/campus/${cur.campusId}`}>.</NavLink>
+                                <NavLink to={`/campus/${cur.campusId}`}>campus Name</NavLink>
                             </td>
                         </tr>
                         <tr className="profile-row">

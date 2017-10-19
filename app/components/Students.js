@@ -17,10 +17,8 @@ export default class Students extends Component {
         this.studentClickHandler = this.studentClickHandler.bind(this);
 
     }
-     componentWillMount ()   {
-        this.setState(store.getState())
-    }
-    componentDidMount ()   {
+
+    componentWillMount ()   {
         store.dispatch(fetchStudents());
         store.dispatch(fetchCampuses());
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));

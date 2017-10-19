@@ -1,5 +1,4 @@
 import axios from 'axios';
-import store from '../store';
 let initialState = {
     list: [],
     campus: {}
@@ -81,9 +80,8 @@ const GET_CAMPUS = 'GET_CAMPUS';
         return axios.put(`/api/campuses/${campusInfo.id}`, campusInfo)
             .then(res => res.data)
             .then(changedCampus => {
-            const action = editCampus(changedCampus);
+            const action = editCampus(changedCampus[1]);
             dispatch(action);
-            // socket.emit('close-campus', closdCampus);
             });
         }
     }
@@ -127,7 +125,7 @@ export default function reducer (state = initialState, action) {
       });
     case EDIT_CAMPUS:
       return Object.assign({}, state, {
-        list: state.list.filter(campus => campus.id != action.campus.id),
+        list: [...state.list.filter(campus => campus.id != action.campus.id),action.campus],
         campus: action.campus
     });
 

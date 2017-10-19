@@ -14,12 +14,15 @@ export default class Campuses extends Component {
         this.clickHandler = this.clickHandler.bind(this);
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         this.clickHandlerAdd = this.clickHandlerAdd.bind(this);
-        
+
     }
     componentWillMount ()   {
         store.dispatch(fetchCampuses());
         store.dispatch(fetchStudents());
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+    }
+    componentWillUnmount()  {
+        this.unsubscribe();
     }
     clickHandler(evt)   {
             evt.preventDefault();
@@ -29,7 +32,7 @@ export default class Campuses extends Component {
     }
     handleMouseEnter(evt)   {
         evt.preventDefault();
-        console.log(event.id, "val enter");
+        console.log(event.id, 'val enter');
         store.dispatch(fetchCampus(evt.target.value))
     }
     clickHandlerAdd(event)   {
@@ -59,7 +62,7 @@ export default class Campuses extends Component {
                                     className="delete-button"
                                     value={school.id}
                                     onClick={this.clickHandler}>X</button>
-                                <h2>{school.name}</h2>
+                                <p>{school.name}</p>
                                 <p
                                 id = {school.id}
                                 name = {school.id}

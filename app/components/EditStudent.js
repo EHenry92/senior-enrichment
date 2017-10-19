@@ -13,19 +13,21 @@ export default class EditStudent extends Component {
         this.changeHandler = this.changeHandler.bind(this);
     }
     componentWillMount ()   {
-        // store.dispatch(fetchCampuses());
-        // store.dispatch(fetchStudent( this.props.match.params.id))
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
+    }
+    componentWillUnmount()  {
+        this.unsubscribe();
     }
 
     submitHandler (event)  {
         event.preventDefault();
-        const state = this.state.students.student;
+        const state = this.state;
         let newStudent = {id: this.state.students.student.id};
-
         if (state.name)  {newStudent.name = state.name}
         if (state.email) {newStudent.email = state.email}
         if (state.campusId) {newStudent.campusId = state.campusId}
+        console.log("subbmitting", newStudent)
+        
             store.dispatch(putStudent(newStudent))
     }
 
@@ -44,7 +46,6 @@ export default class EditStudent extends Component {
     }
 
     render ()   {
-        console.log("the state", this.state)
         const cur = this.state.students.student;
         return (
             <form id="addStudent" onSubmit={this.submitHandler}>
