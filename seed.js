@@ -3,24 +3,24 @@ let db = require('./db');
 let Student = require('./db/models/Student');
 let Campus = require('./db/models/Campus');
 var Promise = require('bluebird');
-const schoolPhotos = require('./public/schoolPhotos')
+// const schoolPhotos = require('./public/schoolPhotos');
 
 
 var Chance = require('chance');
 var chance = new Chance();
-const numStudents = 50;
+const numStudents = 38;
 const numCampuses = 5;
 
 
-// const schoolPhotos = [
-//     'http://cdn.bloody-disgusting.com/wp-content/uploads/2016/01/BD16_Asylum_9.jpg',
-//     'http://upload.wikimedia.org/wikipedia/commons/8/87/Loughboroughgrammarschooltowerblock.jpg',
-//     'http://weburbanist.com/wp-content/uploads/2010/05/stalkerschool.jpg',
-//     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDH25s1Rd1qFLwH9RkIZL8mVauG2cI_KqkRIwxQW9qp71vR5tl',
-//     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt4qmiyGDoQOi6eTTIzq0gWu0wGY-o9YDsB_5ko8HhTVR4eWvCvw'
+const schoolPhotos = [
+    'http://cdn.bloody-disgusting.com/wp-content/uploads/2016/01/BD16_Asylum_9.jpg',
+    'http://upload.wikimedia.org/wikipedia/commons/8/87/Loughboroughgrammarschooltowerblock.jpg',
+    'http://weburbanist.com/wp-content/uploads/2010/05/stalkerschool.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDH25s1Rd1qFLwH9RkIZL8mVauG2cI_KqkRIwxQW9qp71vR5tl',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt4qmiyGDoQOi6eTTIzq0gWu0wGY-o9YDsB_5ko8HhTVR4eWvCvw'
 
 
-// ]
+]
 const schoolNames = ['Asylum' ,'Grammer School','Stalker School',
   'The DayCare','Future Criminals','Haunted Hallways','Quiet School',
   'Handy Dandy School of Carpenters','Java Script Campus','School of Magic'

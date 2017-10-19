@@ -17,6 +17,7 @@ export default class Students extends Component {
         this.campusName = '';
         this.click = false;
         this.clickHandler = this.clickHandler.bind(this);
+        this.getCampusName = this.getCampusName.bind(this);
     }
     componentWillMount ()   {
         const studentId = this.props.match.params.id;
@@ -70,7 +71,7 @@ export default class Students extends Component {
                         <tr className="profile-row">
                             <td> Campus: </td>
                             <td>
-                                <NavLink to={`/campus/${cur.campusId}`}>campus Name</NavLink>
+                                <NavLink to={`/campus/${cur.campusId}`}>{this.getCampusName(cur.campusId)}</NavLink>
                             </td>
                         </tr>
                         <tr className="profile-row">
@@ -81,6 +82,13 @@ export default class Students extends Component {
             </table>
             </div>
         )
+    }
+    getCampusName(id)   {
+        const camps = this.state.campuses.list;
+        console.log(camps);
+        for (let i = 0; i < camps.length;i++)    {
+            if (camps[i].id == id) {return (camps[i].name)}
+        }
     }
 }
 

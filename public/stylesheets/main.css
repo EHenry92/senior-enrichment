@@ -2,10 +2,13 @@ html {
     background-color: #f8f8f8; }
   
 body {
-    background: repeating-linear-gradient(45deg, #6193d4 0px, #6193d4 10px, #ccc 1px, #ccc 11px);
+    background: repeating-linear-gradient(45deg, black 0px, rgb(180, 61, 61) 10px, #ccc 1px, #ccc 11px);
     height: 100vw;
     box-sizing: border-box;
     text-align: center;
+}
+table{
+    border-color: black;
 }
  
 
@@ -30,13 +33,20 @@ body {
         width: 100px;
         align-self: flex-end;
     }
+    .popUp  {
+        float:right;
+        width:30vw;
+        background-color: black;
+        color: rgb(180, 61, 61);
+        margin-right: 3px;
+    }
 
 /* Campus */
     #campuses   {
         display: flex;
-        background-color: rgb(235, 204, 162);
+        background-color: black;
         flex-wrap: wrap;
-        width: 70vw;
+        width: 65vw;
         
     }
     .singleCampus{
@@ -77,7 +87,7 @@ body {
         
     }
     .idField{
-        width:8vw;
+        width:2vw;
         background-color: #ccc;
     }
 
@@ -121,6 +131,8 @@ body {
 
 /* SinglePage */
         .profile-box    {
+            background-color: black;
+            color: white;
 
         }
         .profile-photo  {
@@ -135,5 +147,9 @@ body {
 
         }
         .profile-edit   {
-
-}
+            float:right;
+            position:relative;
+        }
+        .profile-delete {
+            background-color: rgb(180, 61, 61);            
+        }

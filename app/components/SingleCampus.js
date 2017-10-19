@@ -50,11 +50,11 @@ export default class SingleCampus extends Component {
                     {form}
                 </div>
 
-            <table className="profile-box">
+            <table id="campuses">
                 <thead>
                     <tr>
                         <th><img className="profile-photo"src={campus.image} /></th>
-                        <th><h1 className="profile-name">{campus.name}</h1></th>
+                        <th><h1 className="profile-name">{campus.name} Campus</h1></th>
                         <th><button onClick={this.editClickHandler} className='profile-edit'>Edit</button></th>
 
 
@@ -78,6 +78,7 @@ export default class SingleCampus extends Component {
                             </td>
                             <td>
                                 <button
+                                    className="profile-delete"
                                     value={stud.id}
                                     onClick = {this.deleteHandler}>X
                                 </button>

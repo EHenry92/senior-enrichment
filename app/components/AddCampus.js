@@ -39,9 +39,10 @@ export default class AddCampus extends Component {
     render ()   {
         return (
             <form id="addStudent" onSubmit={this.submitHandler}>
-                    <table className="table">
+                    <table>
                         <thead>
                             <tr>
+                            <th>.</th>
                             <th>Add A Campus</th>
                             </tr>
                         </thead>

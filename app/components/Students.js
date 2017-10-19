@@ -73,14 +73,11 @@ export default class Students extends Component {
                                     <td key="id" className="idField">{student.id}</td>
                                     <td key="name" className="nameField">
                                         <NavLink to={`/student/${student.id}`}>{student.name}</NavLink>
-
                                     </td>
                                     <td key="campus" className="campusField">
                                     <NavLink to={`/campus/${student.campusId}`}>
                                     {this.getCampusName(student.campusId)}
                                     </NavLink>
-
-                                    
                                     </td>
                                     <td key="delete" className="deleteField">
                                         <button

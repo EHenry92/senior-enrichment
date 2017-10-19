@@ -48,7 +48,7 @@ export default class EditStudent extends Component {
     render ()   {
         const cur = this.state.students.student;
         return (
-            <form id="addStudent" onSubmit={this.submitHandler}>
+            <form onSubmit={this.submitHandler} >
                     <table className="table">
                         <thead>
                             <tr>
