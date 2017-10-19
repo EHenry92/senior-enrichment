@@ -62,10 +62,10 @@ export default class Campuses extends Component {
                                     className="delete-button"
                                     value={school.id}
                                     onClick={this.clickHandler}>X</button>
-                                <p>{school.name}</p>
+                                <p className="campusText">{school.name}</p>
                                 <p
-                                id = {school.id}
                                 name = {school.id}
+                                className = "campusText"
                                 ><NavLink to={`/campus/${school.id}`}>More Info</NavLink></p>
                             </div>
 

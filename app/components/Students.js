@@ -15,6 +15,7 @@ export default class Students extends Component {
         this.clickHandler = this.clickHandler.bind(this);
         this.deleteHandler = this.deleteHandler.bind(this);
         this.studentClickHandler = this.studentClickHandler.bind(this);
+        this.getCampusName = this.getCampusName.bind(this);
 
     }
 
@@ -37,12 +38,14 @@ export default class Students extends Component {
         evt.preventDefault();
         store.dispatch(destroyStudent(evt.target.value));
     }
+    
     componentWillUnmount () {
         this.unsubscribe();
       }
 
     render ()   {
         let form;
+        let campus;
         if (this.click)
         {form = <AddStudent campuses={this.state.campuses} />}
         return (
@@ -72,7 +75,13 @@ export default class Students extends Component {
                                         <NavLink to={`/student/${student.id}`}>{student.name}</NavLink>
 
                                     </td>
-                                    <td key="campus" className="campusField">.</td>
+                                    <td key="campus" className="campusField">
+                                    <NavLink to={`/campus/${student.campusId}`}>
+                                    {this.getCampusName(student.campusId)}
+                                    </NavLink>
+
+                                    
+                                    </td>
                                     <td key="delete" className="deleteField">
                                         <button
                                         value={student.id}
@@ -88,4 +97,14 @@ export default class Students extends Component {
                 </div>
         )
     }
+    getCampusName(id)   {
+        const camps = this.state.campuses.list;
+        console.log(camps);
+        for (let i = 0; i < camps.length;i++)    {
+            if (camps[i].id == id) {return (camps[i].name)}
+        }
+    }
 }
+
+
+

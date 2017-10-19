@@ -17,11 +17,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 render(
     <Provider store={store}>
       <Router>
-        <div id="main">
-          <div className="col-xs-2">
+        <div>
+          <div>
             <NavBar />
           </div>
-          <div className="col-xs-10">
+          <div>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/students" component={Student} />
