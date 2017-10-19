@@ -27,7 +27,7 @@ api.get('/campuses', (req, res, next) => {
 		else {		res.json(info);
 		}
 	})
-	.catch(err => res.send('Invald Campus',err))
+	.catch(err => res.send('Invald Campus', err))
 })
 .post('/campuses', (req, res, next) => {
 	const aName = req.body.name;
@@ -97,17 +97,15 @@ api.get('/students', (req, res, next) => {
 	})
 })
 .put('/students/:studentId', (req, res, next) =>	{
-		const aEmail = req.body.email;
+		console.log(req.body.student)
 		Student.update(
-			{
-				email: aEmail
-			}, {
+			req.body, {
 				 where: { id: req.params.studentId },
 				 returning: true,
 				 plain: true
 			}
 		)
-		.then(results => res.json(results))
+		.then(results => {res.json(results)})
 		.catch(next)
 })
 .delete('/students/:studentId', (req, res, next) => {

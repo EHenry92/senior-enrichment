@@ -39,7 +39,6 @@ export default class Campuses extends Component {
     }
 
     render ()   {
-        let currentCampus;
         let form;
         if (this.click)
         {form = <AddCampus />}
@@ -57,6 +56,7 @@ export default class Campuses extends Component {
                                 style = {{backgroundImage: `url(${school.image})`}}
                                 className="singleCampus">
                                 <button
+                                    className="delete-button"
                                     value={school.id}
                                     onClick={this.clickHandler}>X</button>
                                 <h2>{school.name}</h2>
@@ -64,7 +64,6 @@ export default class Campuses extends Component {
                                 id = {school.id}
                                 name = {school.id}
                                 ><NavLink to={`/campus/${school.id}`}>More Info</NavLink></p>
-
                             </div>
 
                             )
@@ -78,47 +77,8 @@ export default class Campuses extends Component {
                                     Add A Campus
                                 </button>
                 </div>
-                <div id="list">
-                    {currentCampus}
-                </div>
             </div>
 
         )
     }
-
-    // renderCampusInfo () {
-    //     const id = this.state.aCampus.id;
-    //     let attendies = [];
-    //     attendies = this.state.students.filter(stud => stud.campusId === id);
-    //     return (
-    //         <div>
-    //                 <p>{this.state.aCampus.name}</p>
-    //             <table>
-    //             <thead>
-    //                 <tr>
-    //                 <th>.</th>
-    //                 <th>Student</th>
-    //                 </tr>
-    //             </thead>
-    //             <tbody>
-    //             {
-    //                 attendies.map((stud, idx) => (
-    //                     <tr key={stud.idx + stud.name}>
-    //                     <td key={stud.idx}>{idx}</td>
-    //                     <td key={stud.name}>{stud.name}</td>
-    //                     </tr>
-    //                 ))
-    //                 }
-    //             </tbody>
-    //             </table>
-    //         </div>
-    //     )
-
-    // }
 }
-
-
-
-
-
-

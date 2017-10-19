@@ -28,6 +28,7 @@ export function addStudent (student)   {
     return action;
 }
 export function editStudent (student)   {
+    console.log("the student ifno", student)
     const action = {type: EDIT_STUDENT, student};
     return action;
 }
@@ -61,7 +62,7 @@ export default function reducer (state = initialState, action)   {
               });
         case EDIT_STUDENT:
               return Object.assign({}, state, {
-                list: state.list.filter(person => person.id != action.student.id),
+                list: [...state.list.filter(person => person.id != action.studentId),action.student],
                 student: action.student
             });
         case GET_STUDENT:
@@ -124,10 +125,10 @@ export function destroyStudent (studentId)   {
 
 export function putStudent (student)    {
     return function thunk(dispatch) {
-        return axios.put(`/api/students/${student.id}`)
+        return axios.put(`/api/students/${student.id}`,student)
             .then(res => res.data)
             .then(editedStudent => {
-                dispatch(editStudent(editedStudent))
+                dispatch(editStudent(editedStudent[1]))
             })
             .catch(err => err)
     }

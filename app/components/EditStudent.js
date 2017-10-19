@@ -1,37 +1,42 @@
 import React, {Component} from 'react';
 import store from '../store';
-import {postStudent, fetchStudents} from '../reducers/students';
+import {putStudent, fetchStudent} from '../reducers/students';
+import {fetchCampuses} from '../reducers/campuses';
 
 
-export default class AddStudent extends Component {
+
+export default class EditStudent extends Component {
     constructor(props)   {
         super(props);
+        this.state = store.getState();
         this.submitHandler = this.submitHandler.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
-        
+    }
+    componentWillMount ()   {
+        // store.dispatch(fetchCampuses());
+        // store.dispatch(fetchStudent( this.props.match.params.id))
+        this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
     }
 
     submitHandler (event)  {
         event.preventDefault();
-        const state = this.state;
-        if (state.fName && state.lName && state.campusId)    {
-            const student = {  name: state.fName + ' ' + state.lName,
-            email: state.fName + state.lName + '@GrandCampusSchools.edu',
-            campusId: state.campusId
-            }
-            store.dispatch(postStudent(student))
-            store.dispatch(fetchStudents());
-        }
+        const state = this.state.students.student;
+        let newStudent = {id: this.state.students.student.id};
+
+        if (state.name)  {newStudent.name = state.name}
+        if (state.email) {newStudent.email = state.email}
+        if (state.campusId) {newStudent.campusId = state.campusId}
+            store.dispatch(putStudent(newStudent))
     }
 
     changeHandler (event)    {
         event.preventDefault();
-        if (event.target.name === 'fName')  {
-            return this.setState({fName: event.target.value});
+        if (event.target.name === 'name')  {
+            return this.setState({name: event.target.value});
 
         }
-        else if (event.target.name === 'lName')    {
-            return this.setState({lName: event.target.value})
+        else if (event.target.name === 'email')    {
+            return this.setState({email: event.target.value})
         }
         else if (event.target.name === 'select')    {
             return this.setState({campusId: event.target.value})
@@ -39,29 +44,31 @@ export default class AddStudent extends Component {
     }
 
     render ()   {
+        console.log("the state", this.state)
+        const cur = this.state.students.student;
         return (
             <form id="addStudent" onSubmit={this.submitHandler}>
                     <table className="table">
                         <thead>
                             <tr>
-                            <th>Add A Student</th>
+                            <th>Edit {cur.name}</th>
                             </tr>
                         </thead>
                             <tbody>
                                 <tr>
-                                    <td> First Name: </td>
-                                    <td> <input placeholder="Student First Name" onChange={this.changeHandler} name="fName" /></td>
+                                    <td> Name: </td>
+                                    <td> <input placeholder="Student First Name" onChange={this.changeHandler} name="name" /></td>
                                 </tr>
                                 <tr>
-                                    <td> Last Name: </td>
-                                    <td> <input placeholder="Student Last Name" onChange={this.changeHandler} name="lName" /></td>
+                                    <td> Email: </td>
+                                    <td> <input placeholder="Student Email" onChange={this.changeHandler} name="email" /></td>
                                 </tr>
                                 <tr>
                                     <td> Campus: </td>
                                     <td>
                                         <select onChange={this.changeHandler} name="select">
                                         {
-                                            this.props.campuses.list.map(school =>
+                                            this.state.campuses.list.map(school =>
                                                 <option value={school.id} key={school.id}>{school.name}</option>
                                             )
                                         }

@@ -50,7 +50,7 @@ export default class AddCampus extends Component {
                     <table className="table">
                         <thead>
                             <tr>
-                            <th>Add A Student</th>
+                            <th>Add A Campus</th>
                             </tr>
                         </thead>
                             <tbody>
@@ -73,6 +73,7 @@ export default class AddCampus extends Component {
                         </tbody>
                     </table>
                     <button
+                    className="submit-button"
                     type="submit"
                     >Submit</button>
             </form>

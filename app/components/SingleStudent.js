@@ -4,7 +4,7 @@ import {fetchCampuses} from '../reducers/campuses';
 import Chance from 'chance';
 import { NavLink } from 'react-router-dom';
 import store from '../store';
-
+import EditStudent from './EditStudent';
 
 
 var chance = new Chance();
@@ -15,6 +15,8 @@ export default class Students extends Component {
         super(props);
         this.state = store.getState();
         this.campusName = '';
+        this.click = false;
+        this.clickHandler = this.clickHandler.bind(this);
     }
     componentWillMount ()   {
         const studentId = this.props.match.params.id;
@@ -22,34 +24,52 @@ export default class Students extends Component {
         store.dispatch(fetchCampuses());
         this.unsubscribe = store.subscribe(() => this.setState(store.getState()));
     }
+    
+    clickHandler(event)   {
+        event.preventDefault();
+        this.click = !this.click;
+        this.setState({});
+    }
     render ()   {
         const cur = this.state.students.student;
-        console.log(cur.campus)
         const rand = chance.floating({min: 1, max: 4, fixed: 2})
+        let form;
+        if (this.click)
+        {form = <EditStudent />}
         return (
             <div>
-                <table className="table">
+                <div id="add">
+                    {form}
+                </div>
+                <table className="table profile-box">
                 <thead>
                     <tr>
-                    <th>{cur.name}</th>
+                    <th className="profile-photo">
+                        <img src='/../../public/bookbg.jpg'/>
+                    </th>
+                    <th className="profile-name">{cur.name}
+                    </th>
+                    <th>
+                    <button onClick={this.clickHandler} className='profile-edit'>Edit</button>
+                        </th>
                     </tr>
                 </thead>
                     <tbody>
-                        <tr>
+                        <tr className="profile-row">
                             <td> Id: </td>
                             <td>{cur.id}</td>
                         </tr>
-                        <tr>
+                        <tr className="profile-row">
                             <td> Email: </td>
                             <td>{cur.email}</td>
                         </tr>
-                        <tr>
+                        <tr className="profile-row">
                             <td> Campus: </td>
                             <td>
-                                <NavLink to={`/campus/${cur.campusId}`}>GrandSchoolCampus</NavLink>                         
+                                <NavLink to={`/campus/${cur.campusId}`}>.</NavLink>
                             </td>
                         </tr>
-                        <tr>
+                        <tr className="profile-row">
                             <td> GPA: </td>
                             <td>{rand}</td>
                         </tr>
@@ -59,5 +79,4 @@ export default class Students extends Component {
         )
     }
 }
-
 

@@ -3,7 +3,6 @@ import {fetchStudents, destroyStudent, fetchStudent} from '../reducers/students'
 import store from '../store';
 import {fetchCampuses} from '../reducers/campuses'
 import AddStudent from './AddStudent';
-import OneStudent from './SingleStudent';
 import { NavLink } from 'react-router-dom';
 
 
@@ -71,16 +70,16 @@ export default class Students extends Component {
                                 this.state.students.list.map(student => (
                                 <tr key={'student' + student.id}>
                                     <td key="id" className="idField">{student.id}</td>
-                                    <td key="name">
+                                    <td key="name" className="nameField">
                                         <NavLink to={`/student/${student.id}`}>{student.name}</NavLink>
 
                                     </td>
-                                    <td key="campus" className="campusField">{student.campus.name}</td>
+                                    <td key="campus" className="campusField">.</td>
                                     <td key="delete" className="deleteField">
                                         <button
                                         value={student.id}
                                         onClick={this.deleteHandler}
-                                        className="deleteField">X</button>
+                                        className="delete-button">X</button>
                                     </td>
                                 </tr>
                                 ))

@@ -24,7 +24,7 @@ body {
         
     }
     .nav-button {
-        background-color: orange;
+        background-color: #ccc;
         border-radius: 15px 50px;
         height:70%;
         width: 100px;
@@ -100,4 +100,33 @@ body {
             width: 24vw;
             
         }
-        
+
+/* Buttons */
+        .delete-button  {
+            background-color: red;
+            float:right;
+
+        }
+        .submit-button  {
+            background-color:purple;
+        }
+
+
+/* SinglePage */
+        .profile-box    {
+
+        }
+        .profile-photo  {
+            width:20vw;
+            height: 20vw;
+
+        }
+        .profile-name   {
+
+        }
+        .profile-row    {
+
+        }
+        .profile-edit   {
+
+        }
