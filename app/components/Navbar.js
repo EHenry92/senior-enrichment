@@ -7,7 +7,7 @@ export default class NavBar extends Component {
             <div id="nav">
                  <section className='nav-button'>
                 <h4>
-                <NavLink to="/">Homes</NavLink>
+                <NavLink to="/">Home</NavLink>
                 </h4>
             </section>
                 <section className='nav-button'>

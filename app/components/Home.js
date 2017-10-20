@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function Home(props) {
         return (
-            <div calssName = "mainSpace">
-                    <div>Welcome to the Campase Database.</div>
-                <img className="profile-photo" className="profile-photo" src= {'https://learnvest.global.ssl.fastly.net/wp-content/uploads/2014/08/paying-for-college1.jpg'} />
+            <div className = "mainSpace">
+                    <div><br /><h1>Welcome to the Grand University Database.</h1></div>
+                <img src= {'https://i.shelterness.com/how-to-decorate-windows-for-hallowee-6.jpg'} />
                 </div>
         )
 }

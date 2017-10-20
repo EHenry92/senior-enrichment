@@ -57,7 +57,7 @@ export default class AddCampus extends Component {
                                         <select onChange={this.changeHandler} name="select">
                                         {
                                             schoolPhotos.map((photo, idx)=>
-                                                <option value={idx} key={photo}>{photo.slice(0, 3)}</option>
+                                                <option value={idx} key={photo}>photo {idx}</option>
                                             )
                                         }
                                         </select>

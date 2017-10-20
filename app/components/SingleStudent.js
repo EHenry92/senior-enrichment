@@ -49,7 +49,7 @@ export default class Students extends Component {
                     <tr>
                     <th className="profile-photo">
                         <div>
-                            <img src = {'./book.png'} />
+                            <img src = {'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJp7R4i8PUdXRr4Ey4R4_XgiBsfGn57vn67Y48o5dHACAXDLOm'} />
                     </div>
                     </th>
                     <th className="profile-name">{cur.name}

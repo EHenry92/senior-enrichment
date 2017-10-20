@@ -59,7 +59,7 @@ export default class Students extends Component {
                         <table className="table">
                         <thead>
                             <tr>
-                            <th className="idField">Student Id</th>
+                            <th className="idField">Id</th>
                             <th key="name" className="nameField">Student Name</th>
                             <th className="campusField">Campus Name</th>
                             <th className="deleteField">.</th>

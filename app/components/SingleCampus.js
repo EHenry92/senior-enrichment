@@ -54,10 +54,10 @@ export default class SingleCampus extends Component {
                 <thead>
                     <tr>
                         <th><img className="profile-photo"src={campus.image} /></th>
-                        <th><h1 className="profile-name">{campus.name} Campus</h1></th>
+                        <th><h1 className="profile-name">{campus.name} Campus</h1>
+                            <h4 className="profile-text">Id: {campus.id}</h4>
+                        </th>
                         <th><button onClick={this.editClickHandler} className='profile-edit'>Edit</button></th>
-
-
                     </tr>
                     <tr>
                     <th>#</th>
